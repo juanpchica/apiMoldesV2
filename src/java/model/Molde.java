@@ -10,5 +10,46 @@ package model;
  * @author juanpchica
  */
 public class Molde {
+    private String dimensiones,columna,lado,tipo;
+    private int cantidad;
     
+    public String getColumna() {
+        return columna;
+    }
+
+    public void setColumna(String columna) {
+        this.columna = columna;
+    }
+
+    public String getLado() {
+        return lado;
+    }
+
+    public void setLado(String lado) {
+        this.lado = lado;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getDimensiones() {
+        return dimensiones;
+    }
+
+    public void setDimensiones(String dimensiones) {
+        this.dimensiones = dimensiones;
+    }
 }
