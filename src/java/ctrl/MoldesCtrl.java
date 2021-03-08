@@ -26,7 +26,7 @@ public class MoldesCtrl {
                 molde.setLado(ServiciosBD.resultado.getString("LADO"));
                 molde.setTipo(ServiciosBD.resultado.getString("TIPO"));
                 molde.setCantidad(ServiciosBD.resultado.getInt("CANTIDAD"));
-                moldes.add(molde);
+                moldes.add(molde); 
             }
         } catch (SQLException ex) {
             System.out.println("Error" + ex);
