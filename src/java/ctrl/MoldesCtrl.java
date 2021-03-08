@@ -15,7 +15,7 @@ public class MoldesCtrl {
     /* Retorno una tabla con sus filas y links */
     public static ArrayList<Molde> getMoldes(){
         ArrayList<Molde> moldes  = new ArrayList<>();
-        Molde molde = new Molde();
+        Molde molde = new Molde(); 
        
         ServiciosBD.ConsultaGenereal("*","MOLDES", "","");
         try {
