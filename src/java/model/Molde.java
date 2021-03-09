@@ -10,7 +10,15 @@ package model;
  * @author juanpchica
  */
 public class Molde {
-    private String dimensiones,columna,lado,tipo;
+    private String dimensiones,columna,lado,tipo,ubicacion;
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion() {
+        this.ubicacion = "C:"+this.columna+", "+"L:"+this.lado;
+    }
     private int cantidad;
     
     public String getColumna() {
