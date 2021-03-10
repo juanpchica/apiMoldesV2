@@ -24,12 +24,21 @@ public class MoldesRest {
     @GET
     public Response getVista(@QueryParam("id") String id) {
         ServiciosBD.conectar();
-        return Response.ok(MoldesCtrl.getMoldes(id)).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true").header("Access-Control-Allow-Headers","origin, content-type, accept, authorization").header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD").build();
+        return Response.ok(MoldesCtrl.getMoldes(id)).build();
     }
     
     @PUT
-    public Response updateCountry(Molde molde){
-        return Response.ok(MoldesCtrl.updateMolde(molde)).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true").header("Access-Control-Allow-Headers","origin, content-type, accept, authorization").header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD").build();
-
+    @Path("/actualizar")
+    @Consumes(value= MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON)
+    public Response actualizar(Molde molde){
+        
+        boolean resp = MoldesCtrl.updateMolde(molde);
+        
+        if(resp){
+            return Response.ok(resp).build();
+        }else{
+            return Response.status(Response.Status.BAD_REQUEST).entity("User not found").build();
+        }
     }
 }

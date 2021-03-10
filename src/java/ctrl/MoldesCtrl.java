@@ -42,8 +42,15 @@ public class MoldesCtrl {
     }
     
     public static boolean updateMolde(Molde m){
-        Molde molde = m;
         
+        try {
+            String q = "Update MOLDES set CANTIDAD="+m.getCantidad()+",COLUMNA='"+m.getColumna()+"',LADO='"+m.getLado()+"',VOQUETE="+m.getBoquete()+",SOPORTE="+m.getSoporte()+",ESTADO="+m.getEstado()+" where ID="+m.getID();
+            ServiciosBD.ejecutarConsulta(q);
+            ServiciosBD.resultado.close();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Error" + ex);
+        }
         
         return false;
     }
