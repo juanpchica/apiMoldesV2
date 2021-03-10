@@ -29,6 +29,9 @@ public class MoldesCtrl {
                 molde.setTipo(ServiciosBD.resultado.getString("TIPO"));
                 molde.setCantidad(ServiciosBD.resultado.getInt("CANTIDAD"));
                 molde.setUbicacion();
+                molde.setBoquete(ServiciosBD.resultado.getInt("VOQUETE"));
+                molde.setSoporte(ServiciosBD.resultado.getInt("SOPORTE"));
+                molde.setEstado(ServiciosBD.resultado.getInt("ESTADO"));
                 moldes.add(molde); 
             }
         } catch (SQLException ex) {
@@ -36,6 +39,13 @@ public class MoldesCtrl {
         }
         
         return moldes;
+    }
+    
+    public static boolean updateMolde(Molde m){
+        Molde molde = m;
+        
+        
+        return false;
     }
     
 }

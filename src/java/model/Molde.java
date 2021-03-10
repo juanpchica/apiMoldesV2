@@ -11,7 +11,31 @@ package model;
  */
 public class Molde {
     private String dimensiones,columna,lado,tipo,ubicacion;
-    private int ID;
+    private int ID,estado,soporte,boquete;
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public int getSoporte() {
+        return soporte;
+    }
+
+    public void setSoporte(int soporte) {
+        this.soporte = soporte;
+    }
+
+    public int getBoquete() {
+        return boquete;
+    }
+
+    public void setBoquete(int boquete) {
+        this.boquete = boquete;
+    }
 
     public int getID() {
         return ID;
