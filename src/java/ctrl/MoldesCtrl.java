@@ -13,14 +13,16 @@ import model.ServiciosBD;
 public class MoldesCtrl {
  
     /* Retorno una tabla con sus filas y links */
-    public static ArrayList<Molde> getMoldes(){
+    public static ArrayList<Molde> getMoldes(String id){
         ArrayList<Molde> moldes  = new ArrayList<>();
         Molde molde = new Molde(); 
-       
-        ServiciosBD.ConsultaGenereal("*","MOLDES", "","");
+        String where = (id == null)?"":" where id = "+id;
+        
+        ServiciosBD.ConsultaGenereal("*","MOLDES", where ,"order by fecha asc,id");
         try {
             while(ServiciosBD.resultado.next()){
                 molde = new Molde();
+                molde.setID(ServiciosBD.resultado.getInt("ID"));
                 molde.setDimensiones(ServiciosBD.resultado.getString("DIMENSIONES"));
                 molde.setColumna(ServiciosBD.resultado.getString("COLUMNA"));
                 molde.setLado(ServiciosBD.resultado.getString("LADO"));
@@ -34,9 +36,8 @@ public class MoldesCtrl {
         }
         
         return moldes;
-        
     }
-  
+    
 }
 
 

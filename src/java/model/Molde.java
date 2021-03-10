@@ -11,6 +11,15 @@ package model;
  */
 public class Molde {
     private String dimensiones,columna,lado,tipo,ubicacion;
+    private int ID;
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public String getUbicacion() {
         return ubicacion;
