@@ -28,7 +28,7 @@ public class MoldesRest {
     }
     
     @PUT
-    @Path("/actualizar")
+    @Path("/actualizar") 
     public Response actualizar(Molde molde){
         
         boolean resp = MoldesCtrl.updateMolde(molde);
