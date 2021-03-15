@@ -7,6 +7,8 @@
             <file>file:/C:/Users/juanpchica/Documents/NetBeansProjects/apiMoldes/src/java/model/Molde.java</file>
             <file>file:/C:/Users/juanpchica/Documents/NetBeansProjects/apiMoldes/src/java/ctrl/MoldesRest.java</file>
             <file>file:/C:/Users/juanpchica/Documents/NetBeansProjects/apiMoldes/src/java/ctrl/MoldesCtrl.java</file>
+            <file>file:/C:/Users/juanpchica/Documents/NetBeansProjects/apiMoldes/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/juanpchica/Documents/NetBeansProjects/apiMoldes/src/java/ctrl/ContainerResponseFilter.java</file>
         </group>
     </open-files>
 </project-private>

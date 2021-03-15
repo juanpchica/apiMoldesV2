@@ -26,17 +26,20 @@ public class MoldesRest {
         ServiciosBD.conectar();
         return Response.ok(MoldesCtrl.getMoldes(id)).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true").header("Access-Control-Allow-Headers","origin, content-type, accept, authorization").header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD").build();
     }
-    
+     
     @PUT
+    @Consumes(value= MediaType.APPLICATION_JSON)
+    @Produces(value= MediaType.APPLICATION_JSON)
     @Path("/actualizar") 
     public Response actualizar(Molde molde){
         
-        boolean resp = MoldesCtrl.updateMolde(molde);
-        
-        if(resp){
-            return Response.ok(molde).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true").header("Access-Control-Allow-Headers","origin, content-type, accept, authorization").header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD").build();
-        }else{
-            return Response.status(Response.Status.BAD_REQUEST).entity("User not found").header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Credentials", "true").header("Access-Control-Allow-Headers","origin, content-type, accept, authorization").header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD").build();
-        }
+            return Response.ok(MoldesCtrl.updateMolde(molde))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Credentials", "true")
+                    .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
+                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                    .header("Access-Control-Max-Age", "1209600")
+                    .build();
+       
     }
 }
