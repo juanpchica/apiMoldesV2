@@ -4,6 +4,7 @@ package ctrl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Molde;
+import model.Nucleo;
 import model.ServiciosBD;
 
 /**
@@ -53,6 +54,42 @@ public class MoldesCtrl {
         }
         
         return false;
+    }
+    
+    /* Retorno una tabla con sus filas y links */
+    public static ArrayList<Nucleo> getNucleos(){
+        ArrayList<Nucleo> nucleos  = new ArrayList<>();
+        Nucleo nucleo = new Nucleo(); 
+        
+        ServiciosBD.ConsultaGenereal("*","NUCLEOS", "" ,"ORDER BY IDNUCLEO DESC");
+        try {
+            while(ServiciosBD.resultado.next()){
+                nucleo = new Nucleo();
+                nucleo.setCODIGO(ServiciosBD.resultado.getString("CODIGO"));
+                nucleo.setDIAMETROINT(ServiciosBD.resultado.getInt("DIAMETROINT"));
+                nucleo.setDIAMETROEXT(ServiciosBD.resultado.getInt("DIAMETROEXT"));
+                nucleo.setBI(ServiciosBD.resultado.getDouble("BI"));
+                nucleo.setBISIN(ServiciosBD.resultado.getDouble("BISIN"));
+                nucleo.setLAMINA(ServiciosBD.resultado.getString("LAMINA"));
+                nucleo.setAC(ServiciosBD.resultado.getDouble("AC"));
+                nucleo.setBC(ServiciosBD.resultado.getDouble("BC"));
+                nucleo.setLN2(ServiciosBD.resultado.getDouble("LN2"));
+                nucleo.setAI2(ServiciosBD.resultado.getDouble("AI2"));
+                nucleo.setAI2SIN(ServiciosBD.resultado.getDouble("AI2SIN"));
+                nucleo.setHN(ServiciosBD.resultado.getDouble("AI2SIN"));
+                nucleo.setFP(ServiciosBD.resultado.getDouble("FP"));
+                nucleo.setLAMXGRUPO(ServiciosBD.resultado.getString("LAMXGRUPO"));
+                nucleo.setPESO(ServiciosBD.resultado.getString("PESO"));
+                nucleo.setDISENO(ServiciosBD.resultado.getString("DISENO"));
+                nucleo.setVERSION(ServiciosBD.resultado.getString("VERSION"));
+               
+                nucleos.add(nucleo); 
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error" + ex);
+        }
+        
+        return nucleos;
     }
     
 }

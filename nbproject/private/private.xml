@@ -6,6 +6,9 @@
             <file>file:/C:/Users/juanpchica/Documents/NetBeansProjects/apiMoldes/src/java/model/Molde.java</file>
             <file>file:/C:/Users/juanpchica/Documents/NetBeansProjects/apiMoldes/src/java/ctrl/MoldesRest.java</file>
             <file>file:/C:/Users/juanpchica/Documents/NetBeansProjects/apiMoldes/src/java/ctrl/MoldesCtrl.java</file>
+            <file>file:/C:/Users/juanpchica/Documents/NetBeansProjects/apiMoldes/src/java/ctrl/NucleosCtrl.java</file>
+            <file>file:/C:/Users/juanpchica/Documents/NetBeansProjects/apiMoldes/src/java/model/Nucleo.java</file>
+            <file>file:/C:/Users/juanpchica/Documents/NetBeansProjects/apiMoldes/src/java/ctrl/CorsFilter.java</file>
         </group>
     </open-files>
 </project-private>
