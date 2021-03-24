@@ -23,16 +23,16 @@ public class MoldesCtrl {
         try {
             while(ServiciosBD.resultado.next()){
                 molde = new Molde();
-                molde.setID(ServiciosBD.resultado.getInt("ID"));
+                molde.setId(ServiciosBD.resultado.getInt("ID"));
                 molde.setDimensiones(ServiciosBD.resultado.getString("DIMENSIONES"));
                 molde.setColumna(ServiciosBD.resultado.getString("COLUMNA"));
                 molde.setLado(ServiciosBD.resultado.getString("LADO"));
                 molde.setTipo(ServiciosBD.resultado.getString("TIPO"));
                 molde.setCantidad(ServiciosBD.resultado.getInt("CANTIDAD"));
                 molde.setUbicacion();
-                molde.setBoquete(ServiciosBD.resultado.getInt("VOQUETE"));
-                molde.setSoporte(ServiciosBD.resultado.getInt("SOPORTE"));
-                molde.setEstado(ServiciosBD.resultado.getInt("ESTADO"));
+                molde.setBoquete(ServiciosBD.resultado.getString("BOQUETE"));
+                molde.setSoporte(ServiciosBD.resultado.getString("SOPORTE"));
+                molde.setEstado(ServiciosBD.resultado.getString("ESTADO"));
                 moldes.add(molde); 
             }
         } catch (SQLException ex) {
@@ -45,7 +45,7 @@ public class MoldesCtrl {
     public static boolean updateMolde(Molde m){
         
         try {
-            String q = "Update MOLDES set CANTIDAD="+m.getCantidad()+",COLUMNA='"+m.getColumna()+"',LADO='"+m.getLado()+"',VOQUETE="+m.getBoquete()+",SOPORTE="+m.getSoporte()+",ESTADO="+m.getEstado()+" where ID="+m.getID();
+            String q = "Update MOLDES set CANTIDAD="+m.getCantidad()+",COLUMNA='"+m.getColumna()+"',LADO='"+m.getLado()+"',BOQUETE='"+m.getBoquete()+"',SOPORTE='"+m.getSoporte()+"',ESTADO='"+m.getEstado()+"' where ID="+m.getId();
             ServiciosBD.ejecutarConsulta(q);
             ServiciosBD.resultado.close();
             return true;
