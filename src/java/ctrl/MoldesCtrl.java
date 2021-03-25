@@ -3,6 +3,7 @@ package ctrl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Log;
 import model.Molde;
 import model.Nucleo;
 import model.ServiciosBD;
@@ -14,16 +15,16 @@ import model.ServiciosBD;
 public class MoldesCtrl {
  
     /* Retorno una tabla con sus filas y links */
-    public static ArrayList<Molde> getMoldes(String id){
+    public static ArrayList<Molde> getMoldes(String id,String token){
         ArrayList<Molde> moldes  = new ArrayList<>();
         Molde molde = new Molde(); 
         String where = (id == null)?"":" where id = "+id;
         
-        ServiciosBD.ConsultaGenereal("*","MOLDES", where ,"order by fecha asc,id");
+        ServiciosBD.ConsultaGenereal("*","MOLDES", where ,"order by fecha asc,id desc");
         try {
             while(ServiciosBD.resultado.next()){
                 molde = new Molde();
-                molde.setId(ServiciosBD.resultado.getInt("ID"));
+                molde.setId((token == null || !token.equals("ANcVyuP3"))?0:ServiciosBD.resultado.getInt("ID"));
                 molde.setDimensiones(ServiciosBD.resultado.getString("DIMENSIONES"));
                 molde.setColumna(ServiciosBD.resultado.getString("COLUMNA"));
                 molde.setLado(ServiciosBD.resultado.getString("LADO"));
@@ -90,6 +91,17 @@ public class MoldesCtrl {
         }
         
         return nucleos;
+    }
+    
+    /* Obtengo el nombre de la tabla y el id del subgrupo de esta tabla */
+    public static Log getLogin(String code, String passwd){
+        Log token = new Log("");
+        if(code.equals("adm-mol") && passwd.equals("cVtjM5fXU7hRETJ9")){
+            token.setStatus("ANcVyuP3");
+        }else{
+            token.setStatus("Error");
+        }
+        return token;
     }
     
 }

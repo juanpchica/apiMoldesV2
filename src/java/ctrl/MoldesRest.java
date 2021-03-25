@@ -23,11 +23,21 @@ import model.Molde;
 public class MoldesRest {
     
     @GET
-    public Response getVista(@QueryParam("id") String id) {
+    public Response getVista(@QueryParam("id") String id,@QueryParam("token") String token) {
         ServiciosBD.conectar();
-        return Response.ok(MoldesCtrl.getMoldes(id)).build();
+        return Response.ok(MoldesCtrl.getMoldes(id,token)).build();
     }
-     
+    
+    @GET
+    @Consumes(value= MediaType.APPLICATION_JSON)
+    @Produces(value = MediaType.APPLICATION_JSON)
+    @Path("/activar")
+    public Response getActivar(@QueryParam("user") String code,@QueryParam("passwd") String passwd) {
+        ServiciosBD.conectar();
+        return Response.ok(MoldesCtrl.getLogin(code,passwd)).build();
+    }
+    
+    
     @PUT
     @Consumes(value= MediaType.APPLICATION_JSON)
     @Produces(value = MediaType.APPLICATION_JSON)
