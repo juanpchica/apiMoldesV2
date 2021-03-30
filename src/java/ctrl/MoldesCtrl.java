@@ -33,6 +33,7 @@ public class MoldesCtrl {
                 molde.setBoquete(ServiciosBD.resultado.getString("BOQUETE"));
                 molde.setSoporte(ServiciosBD.resultado.getString("SOPORTE"));
                 molde.setEstado(ServiciosBD.resultado.getString("ESTADO"));
+                molde.setNuevo(ServiciosBD.resultado.getInt("NUEVO"));
                 moldes.add(molde); 
             }
         } catch (SQLException ex) {
@@ -45,7 +46,7 @@ public class MoldesCtrl {
     /* Retorno una tabla con sus filas y links */
     public static Molde getMolde(String id,String token){
         Molde molde = new Molde(); 
-        if(!token.equals("cVtjM5fXU7hRETJ9")){
+        if(!token.equals("ANcVyuP3")){
             return null;
         }
         ServiciosBD.ConsultaGenereal("*","MOLDES",  "where id = "+id ,"");
@@ -61,6 +62,7 @@ public class MoldesCtrl {
                 molde.setBoquete(ServiciosBD.resultado.getString("BOQUETE"));
                 molde.setSoporte(ServiciosBD.resultado.getString("SOPORTE"));
                 molde.setEstado(ServiciosBD.resultado.getString("ESTADO"));
+                molde.setNuevo(ServiciosBD.resultado.getInt("NUEVO"));
             }
         } catch (SQLException ex) {
             System.out.println("Error" + ex);
@@ -72,7 +74,7 @@ public class MoldesCtrl {
     public static boolean updateMolde(Molde m){
         
         try {
-            String q = "Update MOLDES set CANTIDAD="+m.getCantidad()+",COLUMNA='"+m.getColumna()+"',LADO='"+m.getLado()+"',BOQUETE='"+m.getBoquete()+"',SOPORTE='"+m.getSoporte()+"',ESTADO='"+m.getEstado()+"' where ID="+m.getId();
+            String q = "Update MOLDES set CANTIDAD="+m.getCantidad()+",COLUMNA='"+m.getColumna()+"',LADO='"+m.getLado()+"',BOQUETE='"+m.getBoquete()+"',SOPORTE='"+m.getSoporte()+"',ESTADO='"+m.getEstado()+"',NUEVO=0 where ID="+m.getId();
             ServiciosBD.ejecutarConsulta(q);
             ServiciosBD.resultado.close();
             return true;

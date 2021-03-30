@@ -11,7 +11,15 @@ package model;
  */
 public class Molde {
     private String dimensiones,columna,lado,tipo,ubicacion,estado,soporte,boquete;
-    private int id;
+    private int id,nuevo;
+
+    public int getNuevo() {
+        return nuevo;
+    }
+
+    public void setNuevo(int nuevo) {
+        this.nuevo = nuevo;
+    }
 
     public String getEstado() {
         return estado;

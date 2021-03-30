@@ -31,9 +31,14 @@ public class MoldesRest {
     
     @GET
     @Path("/molde")
-    public Response getVista(@QueryParam("id") String id,@QueryParam("token") String token) {
+    public Response getMolde(@QueryParam("id") String id,@QueryParam("token") String token) {
         ServiciosBD.conectar();
-        return Response.ok(MoldesCtrl.getMolde(id,token)).build();
+        Molde m = MoldesCtrl.getMolde(id,token);
+        if(m == null){
+            return Response.serverError().build();
+        }else{
+            return Response.ok(m).build();
+        }
     }
     
     @GET
