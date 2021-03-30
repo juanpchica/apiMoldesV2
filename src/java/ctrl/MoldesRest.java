@@ -23,14 +23,20 @@ import model.Molde;
 public class MoldesRest {
     
     @GET
-    public Response getVista(@QueryParam("id") String id,@QueryParam("token") String token) {
+    @Path("/")
+    public Response getVista(@QueryParam("token") String token) {
         ServiciosBD.conectar();
-        return Response.ok(MoldesCtrl.getMoldes(id,token)).build();
+        return Response.ok(MoldesCtrl.getMoldes(token)).build();
     }
     
     @GET
-    @Consumes(value= MediaType.APPLICATION_JSON)
-    @Produces(value = MediaType.APPLICATION_JSON)
+    @Path("/molde")
+    public Response getVista(@QueryParam("id") String id,@QueryParam("token") String token) {
+        ServiciosBD.conectar();
+        return Response.ok(MoldesCtrl.getMolde(id,token)).build();
+    }
+    
+    @GET
     @Path("/activar")
     public Response getActivar(@QueryParam("user") String code,@QueryParam("passwd") String passwd) {
         ServiciosBD.conectar();
@@ -39,28 +45,11 @@ public class MoldesRest {
     
     
     @PUT
-    @Consumes(value= MediaType.APPLICATION_JSON)
-    @Produces(value = MediaType.APPLICATION_JSON)
     @Path("/actualizar") 
     public Response actualizar(Molde molde){
+            ServiciosBD.conectar();
             Molde m = molde;
             return Response.ok(MoldesCtrl.updateMolde(m)).build();
        
     }
-    
-//    @PUT
-//    @Consumes(value= MediaType.APPLICATION_JSON)
-//    @Produces(value= MediaType.APPLICATION_JSON)
-//    @Path("/actualizar") 
-//    public Response actualizar(Molde molde){
-//            Molde m = molde;
-//            return Response.ok(MoldesCtrl.updateMolde(molde))
-//                    .header("Access-Control-Allow-Origin", "*")
-//                    .header("Access-Control-Allow-Credentials", "true")
-//                    .header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
-//                    .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-//                    .header("Access-Control-Max-Age", "1209600")
-//                    .build();
-//       
-//    }
 }

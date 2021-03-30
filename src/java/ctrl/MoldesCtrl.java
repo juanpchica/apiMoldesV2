@@ -15,12 +15,11 @@ import model.ServiciosBD;
 public class MoldesCtrl {
  
     /* Retorno una tabla con sus filas y links */
-    public static ArrayList<Molde> getMoldes(String id,String token){
+    public static ArrayList<Molde> getMoldes(String token){
         ArrayList<Molde> moldes  = new ArrayList<>();
         Molde molde = new Molde(); 
-        String where = (id == null)?"":" where id = "+id;
         
-        ServiciosBD.ConsultaGenereal("*","MOLDES", where ,"order by fecha asc,id desc");
+        ServiciosBD.ConsultaGenereal("*","MOLDES", "" ,"order by fecha asc,id desc");
         try {
             while(ServiciosBD.resultado.next()){
                 molde = new Molde();
@@ -41,6 +40,33 @@ public class MoldesCtrl {
         }
         
         return moldes;
+    }
+    
+    /* Retorno una tabla con sus filas y links */
+    public static Molde getMolde(String id,String token){
+        Molde molde = new Molde(); 
+        if(!token.equals("cVtjM5fXU7hRETJ9")){
+            return null;
+        }
+        ServiciosBD.ConsultaGenereal("*","MOLDES",  "where id = "+id ,"");
+        try {
+            if(ServiciosBD.resultado.next()){
+                molde.setId(ServiciosBD.resultado.getInt("ID"));
+                molde.setDimensiones(ServiciosBD.resultado.getString("DIMENSIONES"));
+                molde.setColumna(ServiciosBD.resultado.getString("COLUMNA"));
+                molde.setLado(ServiciosBD.resultado.getString("LADO"));
+                molde.setTipo(ServiciosBD.resultado.getString("TIPO"));
+                molde.setCantidad(ServiciosBD.resultado.getInt("CANTIDAD"));
+                molde.setUbicacion();
+                molde.setBoquete(ServiciosBD.resultado.getString("BOQUETE"));
+                molde.setSoporte(ServiciosBD.resultado.getString("SOPORTE"));
+                molde.setEstado(ServiciosBD.resultado.getString("ESTADO"));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error" + ex);
+        }
+        
+        return molde;
     }
     
     public static boolean updateMolde(Molde m){
