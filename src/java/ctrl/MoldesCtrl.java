@@ -19,7 +19,7 @@ public class MoldesCtrl {
         ArrayList<Molde> moldes  = new ArrayList<>();
         Molde molde = new Molde(); 
         
-        ServiciosBD.ConsultaGenereal("*","MOLDES", "" ,"order by fecha asc,id desc");
+        ServiciosBD.ConsultaGenereal("*","MOLDES", "" ,"order by fecha desc,id desc");
         try {
             while(ServiciosBD.resultado.next()){
                 molde = new Molde();
@@ -34,6 +34,7 @@ public class MoldesCtrl {
                 molde.setSoporte(ServiciosBD.resultado.getString("SOPORTE"));
                 molde.setEstado(ServiciosBD.resultado.getString("ESTADO"));
                 molde.setNuevo(ServiciosBD.resultado.getInt("NUEVO"));
+                molde.setCodigo(ServiciosBD.resultado.getString("CODIGO"));
                 moldes.add(molde); 
             }
         } catch (SQLException ex) {
@@ -54,8 +55,8 @@ public class MoldesCtrl {
             if(ServiciosBD.resultado.next()){
                 molde.setId(ServiciosBD.resultado.getInt("ID"));
                 molde.setDimensiones(ServiciosBD.resultado.getString("DIMENSIONES"));
-                molde.setColumna(ServiciosBD.resultado.getString("COLUMNA"));
-                molde.setLado(ServiciosBD.resultado.getString("LADO"));
+                molde.setColumna((ServiciosBD.resultado.getString("COLUMNA") == null)?"":ServiciosBD.resultado.getString("COLUMNA"));
+                molde.setLado((ServiciosBD.resultado.getString("LADO") == null)?"":ServiciosBD.resultado.getString("LADO"));
                 molde.setTipo(ServiciosBD.resultado.getString("TIPO"));
                 molde.setCantidad(ServiciosBD.resultado.getInt("CANTIDAD"));
                 molde.setUbicacion();
@@ -63,6 +64,7 @@ public class MoldesCtrl {
                 molde.setSoporte(ServiciosBD.resultado.getString("SOPORTE"));
                 molde.setEstado(ServiciosBD.resultado.getString("ESTADO"));
                 molde.setNuevo(ServiciosBD.resultado.getInt("NUEVO"));
+                molde.setCodigo((ServiciosBD.resultado.getString("CODIGO")==null)?"":ServiciosBD.resultado.getString("CODIGO"));
             }
         } catch (SQLException ex) {
             System.out.println("Error" + ex);
@@ -74,7 +76,7 @@ public class MoldesCtrl {
     public static boolean updateMolde(Molde m){
         
         try {
-            String q = "Update MOLDES set CANTIDAD="+m.getCantidad()+",COLUMNA='"+m.getColumna()+"',LADO='"+m.getLado()+"',BOQUETE='"+m.getBoquete()+"',SOPORTE='"+m.getSoporte()+"',ESTADO='"+m.getEstado()+"',NUEVO=0 where ID="+m.getId();
+            String q = "Update MOLDES set CANTIDAD="+m.getCantidad()+",COLUMNA='"+m.getColumna()+"',LADO='"+m.getLado()+"',BOQUETE='"+m.getBoquete()+"',SOPORTE='"+m.getSoporte()+"',ESTADO='"+m.getEstado()+"',NUEVO=0,TIPO='"+m.getTipo()+"' where ID="+m.getId();
             ServiciosBD.ejecutarConsulta(q);
             ServiciosBD.resultado.close();
             return true;

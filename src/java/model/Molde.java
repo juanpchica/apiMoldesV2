@@ -10,8 +10,16 @@ package model;
  * @author juanpchica
  */
 public class Molde {
-    private String dimensiones,columna,lado,tipo,ubicacion,estado,soporte,boquete;
+    private String dimensiones,columna,lado,tipo,ubicacion,estado,soporte,boquete,codigo;
     private int id,nuevo;
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 
     public int getNuevo() {
         return nuevo;
@@ -58,7 +66,12 @@ public class Molde {
     }
 
     public void setUbicacion() {
-        this.ubicacion = "C:"+this.columna+", "+"L:"+this.lado;
+        if(this.columna != null){
+            this.ubicacion = "C:"+this.columna+", "+"L:"+this.lado;
+        }else{
+            this.ubicacion = "";
+        }
+        
     }
     private int cantidad;
     
