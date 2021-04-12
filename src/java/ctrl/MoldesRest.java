@@ -20,7 +20,7 @@ import model.Molde;
 @Path("/moldes")
 @Consumes(value= MediaType.APPLICATION_JSON)
 @Produces(value = MediaType.APPLICATION_JSON)
-public class MoldesRest {
+public class MoldesRest { 
     
     @GET
     @Path("/")

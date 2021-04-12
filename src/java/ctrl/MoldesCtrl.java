@@ -18,10 +18,10 @@ public class MoldesCtrl {
     public static ArrayList<Molde> getMoldes(String token){
         ArrayList<Molde> moldes  = new ArrayList<>();
         Molde molde = new Molde(); 
-        
+         
         ServiciosBD.ConsultaGenereal("*","MOLDES", "" ,"order by fecha desc,id desc");
         try {
-            while(ServiciosBD.resultado.next()){
+            while(ServiciosBD.resultado.next()){ 
                 
                 if(ServiciosBD.resultado.getString("CODIGO") != null){
                     if(!ServiciosBD.resultado.getString("CODIGO").startsWith("C")){
