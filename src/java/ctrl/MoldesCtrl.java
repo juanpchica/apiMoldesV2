@@ -22,20 +22,40 @@ public class MoldesCtrl {
         ServiciosBD.ConsultaGenereal("*","MOLDES", "" ,"order by fecha desc,id desc");
         try {
             while(ServiciosBD.resultado.next()){
-                molde = new Molde();
-                molde.setId((token == null || !token.equals("ANcVyuP3"))?0:ServiciosBD.resultado.getInt("ID"));
-                molde.setDimensiones(ServiciosBD.resultado.getString("DIMENSIONES"));
-                molde.setColumna(ServiciosBD.resultado.getString("COLUMNA"));
-                molde.setLado(ServiciosBD.resultado.getString("LADO"));
-                molde.setTipo(ServiciosBD.resultado.getString("TIPO"));
-                molde.setCantidad(ServiciosBD.resultado.getInt("CANTIDAD"));
-                molde.setUbicacion();
-                molde.setBoquete(ServiciosBD.resultado.getString("BOQUETE"));
-                molde.setSoporte(ServiciosBD.resultado.getString("SOPORTE"));
-                molde.setEstado(ServiciosBD.resultado.getString("ESTADO"));
-                molde.setNuevo(ServiciosBD.resultado.getInt("NUEVO"));
-                molde.setCodigo(ServiciosBD.resultado.getString("CODIGO"));
-                moldes.add(molde); 
+                
+                if(ServiciosBD.resultado.getString("CODIGO") != null){
+                    if(!ServiciosBD.resultado.getString("CODIGO").startsWith("C")){
+                        molde = new Molde();
+                        molde.setId((token == null || !token.equals("ANcVyuP3"))?0:ServiciosBD.resultado.getInt("ID"));
+                        molde.setDimensiones(ServiciosBD.resultado.getString("DIMENSIONES"));
+                        molde.setColumna(ServiciosBD.resultado.getString("COLUMNA"));
+                        molde.setLado(ServiciosBD.resultado.getString("LADO"));
+                        molde.setTipo(ServiciosBD.resultado.getString("TIPO"));
+                        molde.setCantidad(ServiciosBD.resultado.getInt("CANTIDAD"));
+                        molde.setUbicacion();
+                        molde.setBoquete(ServiciosBD.resultado.getString("BOQUETE"));
+                        molde.setSoporte(ServiciosBD.resultado.getString("SOPORTE"));
+                        molde.setEstado(ServiciosBD.resultado.getString("ESTADO"));
+                        molde.setNuevo(ServiciosBD.resultado.getInt("NUEVO"));
+                        molde.setCodigo(ServiciosBD.resultado.getString("CODIGO"));
+                        moldes.add(molde); 
+                    }
+                }else{
+                    molde = new Molde();
+                    molde.setId((token == null || !token.equals("ANcVyuP3"))?0:ServiciosBD.resultado.getInt("ID"));
+                    molde.setDimensiones(ServiciosBD.resultado.getString("DIMENSIONES"));
+                    molde.setColumna(ServiciosBD.resultado.getString("COLUMNA"));
+                    molde.setLado(ServiciosBD.resultado.getString("LADO"));
+                    molde.setTipo(ServiciosBD.resultado.getString("TIPO"));
+                    molde.setCantidad(ServiciosBD.resultado.getInt("CANTIDAD"));
+                    molde.setUbicacion();
+                    molde.setBoquete(ServiciosBD.resultado.getString("BOQUETE"));
+                    molde.setSoporte(ServiciosBD.resultado.getString("SOPORTE"));
+                    molde.setEstado(ServiciosBD.resultado.getString("ESTADO"));
+                    molde.setNuevo(ServiciosBD.resultado.getInt("NUEVO"));
+                    molde.setCodigo(ServiciosBD.resultado.getString("CODIGO"));
+                    moldes.add(molde); 
+                }
             }
         } catch (SQLException ex) {
             System.out.println("Error" + ex);
@@ -50,7 +70,7 @@ public class MoldesCtrl {
         if(!token.equals("ANcVyuP3")){
             return null;
         }
-        ServiciosBD.ConsultaGenereal("*","MOLDES",  "where id = "+id ,"");
+        ServiciosBD.ConsultaGenereal("*","MOLDES",  "where id = "+id,"");
         try {
             if(ServiciosBD.resultado.next()){
                 molde.setId(ServiciosBD.resultado.getInt("ID"));
