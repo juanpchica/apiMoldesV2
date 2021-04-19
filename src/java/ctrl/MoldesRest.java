@@ -50,8 +50,8 @@ public class MoldesRest {
     
     
     @PUT
-    @Path("/actualizar") 
-    public Response actualizar(Molde molde){
+    @Path("/actualizar")  
+    public Response actualizar(Molde molde){ 
             ServiciosBD.conectar();
             Molde m = molde;
             return Response.ok(MoldesCtrl.updateMolde(m)).build();
